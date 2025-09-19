@@ -7,19 +7,36 @@
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-#$(call inherit-product, vendor/bluefox/nx1/nx1-vendor.mk)
+ifeq ($(TARGET_USE_PREBUILT_SOURCE),)
+$(call inherit-product, vendor/bluefox/nx1/nx1-vendor.mk)
+endif
 
+# Generic ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Virtual A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
+PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
+
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_sideload \
+    update_verifier \
+    otapreopt_script \
+    checkpoint_gc
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 # API
-# set to 30 because ro.board.first_api_level=30
-PRODUCT_SHIPPING_API_LEVEL := 30
+# ro.board.first_api_level=30 ???
+# set to 30 because ro.product.first_api_level=35
+PRODUCT_SHIPPING_API_LEVEL := 35
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -32,6 +49,10 @@ TARGET_SCREEN_WIDTH := 540
 PRODUCT_PACKAGES += \
     fstab.enableswap \
     fstab.mt6768 \
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
 
 # rc  
 PRODUCT_PACKAGES += \

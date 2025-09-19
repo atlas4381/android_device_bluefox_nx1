@@ -1,0 +1,2 @@
+remote_provisioning.hostname=remoteprovisioning.googleapis.com
+persist.wm.extensions.enabled=true

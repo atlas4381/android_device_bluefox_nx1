@@ -7,9 +7,7 @@
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-ifeq ($(TARGET_USE_PREBUILT_SOURCE),)
-$(call inherit-product, vendor/bluefox/nx1/nx1-vendor.mk)
-endif
+#$(call inherit-product, vendor/bluefox/nx1/nx1-vendor.mk)
 
 # Generic ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
@@ -72,11 +70,12 @@ PRODUCT_PACKAGES += \
 
 # API
 # ro.board.first_api_level=30 ???
-# set to 30 because ro.product.first_api_level=35
+# set to 35 because ro.product.first_api_level=35
 PRODUCT_SHIPPING_API_LEVEL := 35
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_BUILD_RECOVERY_IMAGE :=
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1168

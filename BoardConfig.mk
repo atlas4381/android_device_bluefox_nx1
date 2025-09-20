@@ -5,14 +5,16 @@
 
 DEVICE_PATH := device/bluefox/nx1
 
+#include vendor/bluefox/nx1/BoardConfigVendor.mk
+
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a55
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a55
@@ -22,7 +24,7 @@ TARGET_BOOTLOADER_BOARD_NAME := yk313_k69v1_64
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_BOOTIMG_HEADER_VERSION := 4
+BOARD_BOOT_HEADER_VERSION := 4
 BOARD_INIT_BOOT_HEADER_VERSION := 4
 
 BOARD_KERNEL_BASE := 0x40078000
@@ -73,7 +75,6 @@ endif
 ifeq ($(TARGET_PREBUILT_SOURCE),)
 TARGET_KERNEL_CONFIG := gki_defconfig
 TARGET_KERNEL_SOURCE := kernel/bluefox/nx1
-include vendor/bluefox/nx1/BoardConfigVendor.mk
 endif
 
 # Partitions
@@ -90,8 +91,8 @@ BOARD_BLUEFOX_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system_ext \
     product \
     vendor \
-	system_dlkm \
-	vendor_dlkm \
+    system_dlkm \
+    vendor_dlkm \
     odm_dlkm \
 
 -include vendor/lineage/config/BoardConfigReservedSize.mk
@@ -134,7 +135,6 @@ BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE :=
-PRODUCT_BUILD_RECOVERY_IMAGE :=
 BOARD_USES_RECOVERY_AS_BOOT :=
 
 # Verified Boot
@@ -183,8 +183,8 @@ BOARD_VNDK_VERSION := current
 # SELinux
 # include device/mediatek/sepolicy_vndr/SEPolicy.mk
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/public
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/public
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
 
 # Device Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop

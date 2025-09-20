@@ -18,7 +18,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Virtual A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
 PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
@@ -60,6 +60,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+# Boot control HAL
+# bootctrl.mt6768 not in vendor_boot/vendor???
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl \
+    libboot_control \
+    bootctrl.mt6768
+
+PRODUCT_PACKAGES += \
+    bootctrl.default
+
 # API
 # ro.board.first_api_level=30 ???
 # set to 30 because ro.product.first_api_level=35
@@ -79,7 +89,9 @@ PRODUCT_PACKAGES += \
 
 # Fastbootd
 PRODUCT_PACKAGES += \
-    fastbootd
+    fastbootd \
+    android.hardware.fastboot@1.1-impl-mock \
+    android.hardware.health@2.1-impl
 
 # init.rc  
 PRODUCT_PACKAGES += \

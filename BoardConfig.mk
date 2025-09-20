@@ -121,6 +121,9 @@ TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
 BOARD_BUILD_SYSTEM_ROOT_IMAGE :=
 BOARD_FLASH_BLOCK_SIZE := 262144
 
+# Display
+TARGET_SCREEN_DENSITY := 240
+
 # Platform
 TARGET_BOARD_PLATFORM := mt6768
 BOARD_HAS_MTK_HARDWARE := true
@@ -194,3 +197,24 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/vintf/manifest.xml
 DEVICE_MATRIX_FILE   := \
     $(DEVICE_PATH)/vintf/compatibility_matrix.xml \
     vendor/lineage/config/device_framework_matrix.xml
+
+# TWRP Configuration
+TW_THEME := portrait_hdpi
+TW_EXTRA_LANGUAGES := true
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_USE_TOOLBOX := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_HAS_NO_RECOVERY_PARTITION := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TW_DEFAULT_LANGUAGE := zh-CN
+TW_INCLUDE_FASTBOOTD := true
+TW_INCLUDE_NTFS_3G := true
+TW_DEVICE_VERSION := T69_S39_BLUEFOX_NX1_20250728_By-Atlas
+TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_LOGICAL := system system_ext product vendor system_dlkm vendor_dlkm odm_dlkm
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true

@@ -13,6 +13,9 @@ $(call inherit-product, device/bluefox/nx1/device.mk)
 # Inherit common LineageOS configurations
 $(call inherit-product, vendor/lineage/config/common.mk)
 
+# Inherit common TWRP configurations
+#$(call inherit-product, vendor/twrp/config/common.mk)
+
 PRODUCT_BRAND := BLUEFOX
 PRODUCT_DEVICE := nx1
 PRODUCT_MANUFACTURER := BLUEFOX

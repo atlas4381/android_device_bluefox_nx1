@@ -59,14 +59,8 @@ PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
 # Boot control HAL
-# bootctrl.mt6768 not in vendor_boot/vendor???
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl \
-    libboot_control \
-    bootctrl.mt6768
-
-PRODUCT_PACKAGES += \
-    bootctrl.default
+    android.hardware.boot@1.2-impl
 
 # API
 # ro.board.first_api_level=30 ???
@@ -86,11 +80,12 @@ PRODUCT_PACKAGES += \
     fstab.enableswap \
     fstab.mt6768 \
 
+$(LOCAL_PATH)/fstab.mt6768:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6768
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot@1.1-impl-mock \
-    android.hardware.health@2.1-impl
 
 # init.rc  
 PRODUCT_PACKAGES += \

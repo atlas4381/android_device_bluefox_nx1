@@ -86,6 +86,7 @@ $(LOCAL_PATH)/fstab.mt6768:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk
 PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot@1.1-impl-mock \
+    android.hardware.health@2.0-impl
 
 # init.rc  
 PRODUCT_PACKAGES += \
